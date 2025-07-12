@@ -29,13 +29,9 @@ export default function FormComponent() {
 
     }
 
-    function toggleVisible(event) {
+    function toggleVisible() {
         const pinInput = document.getElementById('pin');
-        if (event.target.checked) {
             pinInput.type = 'text';
-        } else {
-            pinInput.type = 'password';
-        }
     }
 
 
@@ -76,12 +72,11 @@ export default function FormComponent() {
                             inputMode='numeric'
                             title='Pin must be in the format XXXX-XXXX-XXXX-XXXX'
                             onChange={(e) => setPin(e.target.value)}
+                            onFocus={toggleVisible}
+                            onBlur={() => document.getElementById('pin').type = 'password'}
                         />
                     </div>
                     <button type="submit" className={styles.submitButton}>Submit</button>
-                    <div className={styles.checkboxContainer}>
-                        <input type="checkbox" onClick={toggleVisible} className={styles.checkbox} title='Show/Hide Password' /> Show Password
-                    </div>
                 </form>
 
             </section>
